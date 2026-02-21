@@ -1,0 +1,277 @@
+templates:
+  - id: "medication_adherence_check"
+    category: "medication_management"
+    title: "Medication Adherence Check-In"
+    priority: 1
+    script: |
+      Hello {patient_name}, this is your healthcare assistant calling from {clinic_name}.
+      I'm reaching out to check in on your medication routine.
+      
+      Are you currently taking {medication_name} as prescribed by Dr. {provider_name}?
+      
+      [IF YES]: That's great to hear. Have you experienced any side effects 
+      such as {common_side_effects}?
+      
+      [IF NO]: I understand. Can you tell me what's been making it difficult 
+      to take your medication? Common reasons include cost, side effects, 
+      or simply forgetting.
+      
+      [CLOSING]: Thank you for sharing that with me. I'll note this in your 
+      record so Dr. {provider_name} can follow up with you at your next visit 
+      on {next_appointment_date}. Is there anything else I can help with today?
+    required_fields:
+      - patient_name
+      - clinic_name
+      - medication_name
+      - provider_name
+      - common_side_effects
+      - next_appointment_date
+    tags:
+      - medication
+      - adherence
+      - follow-up
+      - chronic_care
+
+  - id: "appointment_reminder"
+    category: "scheduling"
+    title: "Appointment Reminder Call"
+    priority: 1
+    script: |
+      Hello {patient_name}, this is your healthcare assistant from {clinic_name}.
+      I'm calling to remind you about your upcoming appointment.
+      
+      You have a {appointment_type} appointment scheduled with 
+      Dr. {provider_name} on {appointment_date} at {appointment_time}.
+      
+      [CONFIRM]: Can you confirm that you'll be able to make this appointment?
+      
+      [IF YES]: Wonderful. Please remember to {pre_visit_instructions}.
+      
+      [IF NEEDS RESCHEDULE]: No problem. I can help you find a new time. 
+      Would you prefer morning or afternoon appointments?
+      
+      [CLOSING]: Thank you, {patient_name}. If you need to reach us before 
+      your appointment, you can call {clinic_phone}. Have a great day.
+    required_fields:
+      - patient_name
+      - clinic_name
+      - appointment_type
+      - provider_name
+      - appointment_date
+      - appointment_time
+      - pre_visit_instructions
+      - clinic_phone
+    tags:
+      - appointment
+      - reminder
+      - scheduling
+
+  - id: "post_discharge_followup"
+    category: "care_transitions"
+    title: "Post-Discharge Follow-Up Call"
+    priority: 1
+    script: |
+      Hello {patient_name}, this is your healthcare assistant from {clinic_name}.
+      I'm calling to check on you following your recent {procedure_type} 
+      on {discharge_date}.
+      
+      First, how are you feeling overall since you left the hospital?
+      
+      [SYMPTOM CHECK]: Are you experiencing any of the following: 
+      {warning_symptoms}?
+      
+      [IF WARNING SYMPTOMS]: I want to make sure you get the right care. 
+      Based on what you've described, I recommend {escalation_action}. 
+      Would you like me to connect you now?
+      
+      [IF NO SYMPTOMS]: That's good to hear. Remember to continue following 
+      your discharge instructions, including {discharge_instructions}.
+      
+      [MEDICATION REVIEW]: You were prescribed {discharge_medications}. 
+      Have you been able to fill and start taking these medications?
+      
+      [CLOSING]: Your follow-up appointment is scheduled for 
+      {followup_appointment_date} with Dr. {provider_name}. 
+      If you experience any concerning symptoms before then, 
+      please call {emergency_line} immediately. Take care.
+    required_fields:
+      - patient_name
+      - clinic_name
+      - procedure_type
+      - discharge_date
+      - warning_symptoms
+      - escalation_action
+      - discharge_instructions
+      - discharge_medications
+      - followup_appointment_date
+      - provider_name
+      - emergency_line
+    tags:
+      - post_discharge
+      - care_transition
+      - follow_up
+      - safety_check
+
+  - id: "chronic_condition_monitoring"
+    category: "chronic_care"
+    title: "Chronic Condition Monitoring Check-In"
+    priority: 2
+    script: |
+      Hello {patient_name}, this is your healthcare assistant from {clinic_name}.
+      I'm reaching out for your regular {condition_name} check-in.
+      
+      [VITAL SIGNS]: Have you been monitoring your {vital_type} as recommended?
+      What was your most recent reading?
+      
+      [IF WITHIN RANGE]: Your {vital_type} sounds like it's within a healthy 
+      range. Keep up the great work with your management plan.
+      
+      [IF OUT OF RANGE]: Thank you for sharing that. A {vital_type} reading 
+      of that level may need attention. {out_of_range_guidance}
+      
+      [LIFESTYLE]: How has your {lifestyle_factor} been this week? 
+      Remember, {lifestyle_recommendation}.
+      
+      [CLOSING]: Your next check-in with Dr. {provider_name} is on 
+      {next_appointment_date}. Continue logging your {vital_type} readings 
+      so we can track your progress. Is there anything else on your mind?
+    required_fields:
+      - patient_name
+      - clinic_name
+      - condition_name
+      - vital_type
+      - out_of_range_guidance
+      - lifestyle_factor
+      - lifestyle_recommendation
+      - provider_name
+      - next_appointment_date
+    tags:
+      - chronic_care
+      - monitoring
+      - vitals
+      - lifestyle
+
+  - id: "preventive_screening_outreach"
+    category: "preventive_care"
+    title: "Preventive Screening Outreach"
+    priority: 2
+    script: |
+      Hello {patient_name}, this is your healthcare assistant from {clinic_name}.
+      I'm calling because our records show you may be due for a 
+      {screening_type} screening.
+      
+      [IMPORTANCE]: Regular {screening_type} screening is recommended 
+      {screening_frequency} for patients {eligibility_criteria}. 
+      Early detection can {screening_benefit}.
+      
+      [SCHEDULING]: Would you like me to help schedule this screening? 
+      We have availability {available_slots}.
+      
+      [IF ALREADY DONE]: That's great! Do you remember approximately when 
+      and where you had it done? I'll update your records.
+      
+      [IF DECLINED]: I understand. May I ask if you have any concerns about 
+      the screening? I'm happy to address any questions.
+      
+      [CLOSING]: Thank you for your time, {patient_name}. If you change 
+      your mind or have questions, please call us at {clinic_phone}. 
+      Take care.
+    required_fields:
+      - patient_name
+      - clinic_name
+      - screening_type
+      - screening_frequency
+      - eligibility_criteria
+      - screening_benefit
+      - available_slots
+      - clinic_phone
+    tags:
+      - preventive_care
+      - screening
+      - outreach
+
+clinical_knowledge:
+  - id: "diabetes_management"
+    category: "chronic_care"
+    content: |
+      Type 2 Diabetes Management Guidelines:
+      - Target A1C: Below 7% for most adults
+      - Blood glucose monitoring: Fasting 80-130 mg/dL, post-meal below 180 mg/dL
+      - Medication classes: Metformin (first-line), SGLT2 inhibitors, GLP-1 receptor agonists
+      - Lifestyle: 150 minutes moderate exercise per week, Mediterranean or DASH diet
+      - Complications monitoring: Annual eye exam, foot exam, kidney function tests
+      - Emergency signs: Blood sugar above 300 mg/dL, fruity breath, excessive thirst
+    tags:
+      - diabetes
+      - chronic_care
+      - medication
+      - lifestyle
+
+  - id: "hypertension_management"
+    category: "chronic_care"
+    content: |
+      Hypertension Management Guidelines:
+      - Target BP: Below 130/80 mmHg for most adults
+      - Stage 1: 130-139/80-89 mmHg - lifestyle changes, consider medication
+      - Stage 2: 140+/90+ mmHg - medication typically indicated
+      - First-line medications: ACE inhibitors, ARBs, calcium channel blockers, thiazide diuretics
+      - Lifestyle: DASH diet, sodium below 2300mg/day, regular exercise, weight management
+      - Monitoring: Home BP monitoring twice daily, log readings
+      - Emergency: BP above 180/120 with symptoms - seek immediate care
+    tags:
+      - hypertension
+      - blood_pressure
+      - chronic_care
+      - cardiovascular
+
+  - id: "heart_failure_management"
+    category: "chronic_care"
+    content: |
+      Heart Failure Self-Management:
+      - Daily weight monitoring: Report gain of 2+ lbs overnight or 5+ lbs in a week
+      - Fluid restriction: Typically 1.5-2 liters per day
+      - Sodium restriction: Below 2000mg per day
+      - Medication adherence critical: ACE inhibitors/ARBs, beta-blockers, diuretics
+      - Activity: Stay as active as tolerated, cardiac rehab if appropriate
+      - Warning signs: Increased shortness of breath, leg swelling, persistent cough
+      - Emergency: Severe breathing difficulty, chest pain, fainting
+    tags:
+      - heart_failure
+      - cardiac
+      - chronic_care
+      - self_management
+
+  - id: "post_surgical_care"
+    category: "care_transitions"
+    content: |
+      General Post-Surgical Care Instructions:
+      - Incision care: Keep clean and dry, watch for redness/swelling/drainage
+      - Pain management: Take prescribed medications as directed, report uncontrolled pain
+      - Activity restrictions: Follow surgeon-specific guidelines, avoid heavy lifting
+      - Diet: Start with clear liquids, advance as tolerated unless otherwise instructed
+      - Follow-up: Attend all scheduled post-op appointments
+      - Warning signs: Fever above 101.5°F, increasing pain, wound opening, heavy bleeding
+      - DVT prevention: Move frequently, wear compression stockings if prescribed
+    tags:
+      - surgery
+      - post_operative
+      - care_transition
+      - recovery
+
+  - id: "medication_safety"
+    category: "medication_management"
+    content: |
+      Medication Safety Best Practices:
+      - Always take medications as prescribed - do not adjust doses independently
+      - Maintain an up-to-date medication list including OTC drugs and supplements
+      - Common drug interactions to watch: Warfarin with NSAIDs, ACE inhibitors with potassium
+      - Storage: Keep in original containers, away from heat/moisture, check expiration dates
+      - Refill management: Request refills 7 days before running out
+      - Side effect reporting: Contact provider for persistent or severe side effects
+      - Never share prescription medications with others
+      - Dispose of unused medications at pharmacy take-back programs
+    tags:
+      - medication
+      - safety
+      - drug_interactions
+      - adherence
