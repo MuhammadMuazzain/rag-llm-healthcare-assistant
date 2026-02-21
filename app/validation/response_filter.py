@@ -17,7 +17,7 @@ FIX APPLIED: Responses deviating from approved clinical script formats
 
 import structlog
 from langchain_openai import ChatOpenAI
-from langchain.schema import HumanMessage, SystemMessage
+from langchain_core.messages import HumanMessage, SystemMessage
 from app.validation.template_validator import ClinicalOutputValidator, ValidationResult
 from config import get_settings
 

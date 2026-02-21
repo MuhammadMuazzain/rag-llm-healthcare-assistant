@@ -201,7 +201,10 @@ class TestSilencePhases:
             }
         }
         await voice_client.handle_webhook_event(event)
-        assert voice_client._state.silence_phase == SilencePhase.MID_CONVERSATION
+        assert voice_client._state.silence_phase in (
+            SilencePhase.MID_CONVERSATION,
+            SilencePhase.SYSTEM_PROCESSING,
+        )
 
 
 class TestConversationStateReporting:

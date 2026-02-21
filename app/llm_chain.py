@@ -4,7 +4,7 @@ LLM chain that ties RAG retrieval, prompt construction, and output validation to
 
 import structlog
 from langchain_openai import ChatOpenAI
-from langchain.schema import HumanMessage, SystemMessage
+from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 from app.rag.retriever import ClinicalRAGRetriever
 from app.validation.response_filter import ClinicalResponseFilter
 from app.templates.prompts import (
@@ -56,7 +56,6 @@ class ClinicalLLMChain:
             if entry["role"] == "user":
                 messages.append(HumanMessage(content=entry["content"]))
             else:
-                from langchain.schema import AIMessage
                 messages.append(AIMessage(content=entry["content"]))
 
         messages.append(HumanMessage(content=user_prompt))

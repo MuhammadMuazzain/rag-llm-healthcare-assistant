@@ -15,7 +15,7 @@ FIX APPLIED: Irrelevant content retrieval
 import structlog
 from dataclasses import dataclass
 from langchain_chroma import Chroma
-from langchain.schema import Document
+from langchain_core.documents import Document
 from app.rag.embeddings import EmbeddingManager
 from app.rag.chunking import ClinicalChunk, estimate_tokens
 from config import get_settings
